@@ -1,11 +1,6 @@
-import {
-  Calendar,
-  LayoutDashboard,
-  ShieldCheck,
-  User,
-} from 'lucide-react';
+import { Calendar, LayoutDashboard, ShieldCheck, User } from 'lucide-react';
 import { PrimeReactProvider } from 'primereact/api';
-import { lazy, Suspense, useEffect, useState } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import { Provider } from 'react-redux';
 
 import Sidebar from './components/Sidebar';
@@ -14,28 +9,12 @@ import { store } from './store';
 
 const LeaveRequest = lazy(() => import('./components/LeaveRequest'));
 const ManageApprovals = lazy(() => import('./components/ManageApprovals'));
-const TeamStatusDashboard = lazy(() => import('./components/TeamStatusDashboard'));
+const TeamStatusDashboard = lazy(
+  () => import('./components/TeamStatusDashboard'),
+);
 
 export default function App() {
-  const [isDark, setIsDark] = useState(true); // Default to dark mode as per image
   const [activePage, setActivePage] = useState('leave'); // Default to leave as per image
-
-  useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [isDark]);
-
-  const toggleTheme = () => {
-    const root = document.documentElement;
-    root.classList.add('theme-switch');
-    setIsDark((prev) => !prev);
-    window.setTimeout(() => {
-      root.classList.remove('theme-switch');
-    }, 150);
-  };
 
   return (
     <Provider store={store}>
@@ -43,7 +22,7 @@ export default function App() {
         <div className='min-h-screen bg-background dark:bg-transparent text-on-surface dark:text-dark-text transition-colors duration-150'>
           <Sidebar activePage={activePage} onPageChange={setActivePage} />
           <div className='md:ml-64 flex flex-col min-h-screen'>
-            <Topbar isDark={isDark} toggleTheme={toggleTheme} />
+            <Topbar />
             <main className='flex-1 p-8'>
               <Suspense
                 fallback={

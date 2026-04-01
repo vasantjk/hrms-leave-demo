@@ -1,13 +1,10 @@
-import { Bell, Moon, Search,Sun } from 'lucide-react';
+import { Bell, Moon, Search, Sun } from 'lucide-react';
 
 import AvatarInitials from './AvatarInitials';
+import { useTheme } from '../context/ThemeContext';
 
-interface Props {
-  isDark: boolean;
-  toggleTheme: () => void;
-}
-
-export default function Topbar({ isDark, toggleTheme }: Props) {
+export default function Topbar() {
+  const { isDark, toggleTheme } = useTheme();
   const currentUser = {
     name: 'Maya Chen',
     initials: 'MC',
