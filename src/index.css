@@ -1,111 +1,230 @@
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+@import "tailwindcss";
+@import "primereact/resources/themes/lara-light-blue/theme.css";
+@import "primereact/resources/primereact.min.css";
+@import "primeicons/primeicons.css";
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+/* Use class-based dark mode so the toggle works */
+@custom-variant dark (&:where(.dark, .dark *));
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@theme {
+  --color-primary: #2563eb;
+  --color-primary-container: #1e40af;
+  --color-on-primary: #ffffff;
+  --color-secondary: #495e8a;
+  --color-secondary-container: #1e293b;
+  --color-on-secondary-container: #e2e8f0;
+  --color-tertiary: #924700;
+  --color-on-tertiary: #ffffff;
+  --color-error: #ef4444;
+  --color-error-container: #450a0a;
+  --color-on-error-container: #fca5a5;
+  --color-background: #f9f9ff;
+  --color-surface: #f9f9ff;
+  --color-on-surface: #191b23;
+  --color-on-surface-variant: #424754;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f2f3fd;
+  --color-surface-container-high: #e6e7f2;
+  --color-surface-container-highest: #e1e2ec;
+  --color-outline-variant: #c2c6d6;
 
-  @media (max-width: 1024px) {
-    font-size: 16px;
+  /* Dark Mode Palette (Talent Suite Style) */
+  --color-dark-bg: #0b0f1a;
+  --color-dark-sidebar: #0f172a;
+  --color-dark-card: #121a2b;
+  --color-dark-card-elevated: #16223a;
+  --color-dark-input: #0f172a;
+  --color-dark-border: #1f2a44;
+  --color-dark-text: #e8eef9;
+  --color-dark-text-muted: #8aa0bf;
+  --color-dark-ring: rgba(37, 99, 235, 0.35);
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-on-surface font-sans antialiased dark:bg-dark-bg dark:text-dark-text;
+  }
+
+  .dark body {
+    background-image:
+      radial-gradient(1200px 600px at 10% -10%, rgba(37, 99, 235, 0.18), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(14, 165, 233, 0.12), transparent 55%),
+      linear-gradient(180deg, rgba(12, 16, 28, 0.92) 0%, rgba(8, 11, 19, 0.98) 100%);
+    color-scheme: dark;
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+/* PrimeReact Overrides to match the design and handle dark mode */
+.p-button {
+  @apply rounded-xl font-bold transition-colors duration-150;
 }
 
-body {
-  margin: 0;
+.p-button.p-button-primary {
+  @apply bg-primary text-on-primary border-none shadow-sm hover:opacity-90 dark:bg-primary dark:hover:bg-blue-500;
 }
 
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
+.p-button.p-button-secondary {
+  @apply bg-surface-container-high text-on-surface border-none hover:bg-surface-container-highest dark:bg-dark-card dark:text-dark-text dark:hover:bg-slate-700;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+.p-button.p-button-danger {
+  @apply bg-surface-container-high text-on-surface border-none hover:bg-error-container hover:text-on-error-container dark:bg-dark-card dark:text-dark-text dark:hover:bg-red-900/20 dark:hover:text-red-400;
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
+/* Disable heavy transitions during theme switch to avoid jank */
+.theme-switch,
+.theme-switch * {
+  transition: none !important;
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+.p-inputtext,
+.p-inputtextarea,
+.p-dropdown {
+  @apply rounded-xl;
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+.p-calendar {
+  @apply w-full;
+}
+
+.p-calendar .p-inputtext {
+  @apply w-full;
+}
+
+.p-calendar .p-datepicker-trigger {
+  @apply rounded-xl border border-outline-variant/20 bg-surface-container-low text-on-surface-variant;
+}
+
+/* Ensure PrimeReact components respect dark mode */
+.dark .p-component {
+  @apply text-dark-text;
+}
+
+.dark .p-inputtext {
+  @apply bg-dark-input border-dark-border text-dark-text;
+}
+
+.dark .p-dropdown {
+  @apply bg-dark-input border-dark-border text-dark-text;
+}
+
+.dark .p-dropdown-panel {
+  @apply bg-dark-card border-dark-border text-dark-text;
+}
+
+.dark .p-inputtextarea {
+  @apply bg-dark-input border-dark-border text-dark-text;
+}
+
+.dark .p-inputtext::placeholder,
+.dark .p-inputtextarea::placeholder {
+  color: var(--color-dark-text-muted);
+}
+
+.dark .p-dropdown .p-dropdown-label {
+  color: var(--color-dark-text);
+}
+
+.dark .p-dropdown-trigger {
+  color: var(--color-dark-text-muted);
+}
+
+.dark .p-calendar .p-datepicker-trigger {
+  background: var(--color-dark-input);
+  border-color: var(--color-dark-border);
+  color: var(--color-dark-text-muted);
+}
+
+.dark .p-calendar .p-inputtext {
+  background: var(--color-dark-input);
+  border-color: var(--color-dark-border);
+  color: var(--color-dark-text);
+}
+
+.dark .p-datepicker {
+  background: var(--color-dark-card);
+  border: 1px solid var(--color-dark-border);
+  color: var(--color-dark-text);
+  box-shadow: 0 25px 50px rgba(2, 6, 23, 0.6);
+}
+
+.dark .p-datepicker-header {
+  background: transparent;
+  border-bottom: 1px solid var(--color-dark-border);
+}
+
+.dark .p-datepicker .p-datepicker-prev,
+.dark .p-datepicker .p-datepicker-next {
+  color: var(--color-dark-text);
+}
+
+.dark .p-datepicker-title {
+  color: var(--color-dark-text);
+}
+
+.dark .p-datepicker-calendar th {
+  color: var(--color-dark-text-muted);
+}
+
+.dark .p-datepicker-calendar td > span {
+  color: var(--color-dark-text);
+}
+
+.dark .p-datepicker-calendar td > span:not(.p-highlight):hover {
+  background: var(--color-dark-card-elevated);
+}
+
+.dark .p-datepicker-calendar td > span.p-highlight {
+  background: rgba(37, 99, 235, 0.2);
+  color: #ffffff;
+}
+
+.dark .p-datepicker-calendar td.p-datepicker-today > span {
+  border: 1px solid rgba(59, 130, 246, 0.5);
+}
+
+.dark .p-dropdown:not(.p-disabled).p-focus,
+.dark .p-inputtext:focus,
+.dark .p-inputtextarea:focus {
+  box-shadow: 0 0 0 3px var(--color-dark-ring);
+  border-color: var(--color-primary);
+}
+
+.dark .p-dropdown-panel {
+  box-shadow: 0 20px 40px rgba(2, 6, 23, 0.6);
+}
+
+.dark .p-dropdown-item {
+  color: var(--color-dark-text);
+}
+
+.dark .p-dropdown-item:not(.p-highlight):hover {
+  background: var(--color-dark-card-elevated);
+}
+
+.dark .p-dropdown-item.p-highlight {
+  background: rgba(37, 99, 235, 0.18);
+  color: #ffffff;
+}
+
+.dark .p-button.p-button-primary {
+  background: linear-gradient(135deg, #2f6bff 0%, #3b82f6 100%);
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.35);
+  border: none;
+}
+
+.dark .p-button.p-button-secondary {
+  background: var(--color-dark-card);
+  border: 1px solid var(--color-dark-border);
+  color: var(--color-dark-text);
+}
+
+.dark .p-button.p-button-danger {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
 }
