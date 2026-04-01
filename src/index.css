@@ -1,7 +1,8 @@
-@import "tailwindcss";
-@import "primereact/resources/themes/lara-light-blue/theme.css";
-@import "primereact/resources/primereact.min.css";
-@import "primeicons/primeicons.css";
+@import 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap';
+@import 'tailwindcss';
+@import 'primereact/resources/themes/lara-light-blue/theme.css';
+@import 'primereact/resources/primereact.min.css';
+@import 'primeicons/primeicons.css';
 
 /* Use class-based dark mode so the toggle works */
 @custom-variant dark (&:where(.dark, .dark *));
@@ -39,21 +40,37 @@
   --color-dark-text-muted: #8aa0bf;
   --color-dark-ring: rgba(37, 99, 235, 0.35);
 
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
   --radius-xl: 0.75rem;
   --radius-2xl: 1rem;
 }
 
 @layer base {
+  html {
+    scrollbar-gutter: stable;
+  }
+
   body {
     @apply bg-background text-on-surface font-sans antialiased dark:bg-dark-bg dark:text-dark-text;
   }
 
   .dark body {
     background-image:
-      radial-gradient(1200px 600px at 10% -10%, rgba(37, 99, 235, 0.18), transparent 60%),
-      radial-gradient(900px 500px at 100% 0%, rgba(14, 165, 233, 0.12), transparent 55%),
-      linear-gradient(180deg, rgba(12, 16, 28, 0.92) 0%, rgba(8, 11, 19, 0.98) 100%);
+      radial-gradient(
+        1200px 600px at 10% -10%,
+        rgba(37, 99, 235, 0.18),
+        transparent 60%
+      ),
+      radial-gradient(
+        900px 500px at 100% 0%,
+        rgba(14, 165, 233, 0.12),
+        transparent 55%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(12, 16, 28, 0.92) 0%,
+        rgba(8, 11, 19, 0.98) 100%
+      );
     color-scheme: dark;
   }
 }
@@ -110,10 +127,6 @@
 
 .dark .p-dropdown {
   @apply bg-dark-input border-dark-border text-dark-text;
-}
-
-.dark .p-dropdown-panel {
-  @apply bg-dark-card border-dark-border text-dark-text;
 }
 
 .dark .p-inputtextarea {
@@ -195,6 +208,7 @@
 }
 
 .dark .p-dropdown-panel {
+  @apply bg-dark-card border-dark-border text-dark-text;
   box-shadow: 0 20px 40px rgba(2, 6, 23, 0.6);
 }
 
