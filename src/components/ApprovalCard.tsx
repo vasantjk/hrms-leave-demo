@@ -1,8 +1,9 @@
-import { Umbrella, Receipt, Monitor } from 'lucide-react';
+import { Monitor,Receipt, Umbrella } from 'lucide-react';
 import { Button } from 'primereact/button';
-import { ApprovalRequest, RequestType } from '../types';
 import { useDispatch } from 'react-redux';
+
 import { approveRequest, rejectRequest } from '../store';
+import { ApprovalRequest, RequestType } from '../types';
 import AvatarInitials from './AvatarInitials';
 
 interface Props {

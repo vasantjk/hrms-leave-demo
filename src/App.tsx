@@ -1,18 +1,20 @@
-import { useState, useEffect, lazy, Suspense } from 'react';
+import {
+  Calendar,
+  LayoutDashboard,
+  ShieldCheck,
+  User,
+} from 'lucide-react';
+import { PrimeReactProvider } from 'primereact/api';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { Provider } from 'react-redux';
-import { store } from './store';
-import Topbar from './components/Topbar';
+
 import Sidebar from './components/Sidebar';
+import Topbar from './components/Topbar';
+import { store } from './store';
+
 const LeaveRequest = lazy(() => import('./components/LeaveRequest'));
 const ManageApprovals = lazy(() => import('./components/ManageApprovals'));
 const TeamStatusDashboard = lazy(() => import('./components/TeamStatusDashboard'));
-import {
-  LayoutDashboard,
-  Calendar,
-  User,
-  ShieldCheck,
-} from 'lucide-react';
-import { PrimeReactProvider } from 'primereact/api';
 
 export default function App() {
   const [isDark, setIsDark] = useState(true); // Default to dark mode as per image

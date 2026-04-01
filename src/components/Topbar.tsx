@@ -1,4 +1,5 @@
-import { Bell, Moon, Sun, Search } from 'lucide-react';
+import { Bell, Moon, Search,Sun } from 'lucide-react';
+
 import AvatarInitials from './AvatarInitials';
 
 interface Props {

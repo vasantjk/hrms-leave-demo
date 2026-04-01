@@ -1,9 +1,10 @@
-import { useSelector } from 'react-redux';
-import { RootState } from '../store';
-import FilterBar from './FilterBar';
-import ApprovalCard from './ApprovalCard';
 import { CheckCircle2 } from 'lucide-react';
+import { useSelector } from 'react-redux';
+
+import { RootState } from '../store';
 import { ApprovalRequest, RequestType } from '../types';
+import ApprovalCard from './ApprovalCard';
+import FilterBar from './FilterBar';
 
 function ManageApprovals() {
   const { requests, filter } = useSelector(

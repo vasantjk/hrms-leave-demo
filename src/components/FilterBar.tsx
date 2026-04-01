@@ -1,7 +1,8 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState, setFilter } from '../store';
 import { clsx } from 'clsx';
+import { useDispatch, useSelector } from 'react-redux';
 import { twMerge } from 'tailwind-merge';
+
+import { RootState, setFilter } from '../store';
 
 const filters = ['All Requests', 'Time Off', 'Expenses', 'Hardware'];
 

@@ -1,4 +1,5 @@
 import { configureStore, createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import { ApprovalRequest, ApprovalsState, RequestType } from './types';
 
 const initialState: ApprovalsState = {

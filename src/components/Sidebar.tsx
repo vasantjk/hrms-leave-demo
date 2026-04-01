@@ -1,12 +1,12 @@
+import { clsx } from 'clsx';
 import {
-  LayoutDashboard,
   Calendar,
-  ShieldCheck,
-  Settings,
+  LayoutDashboard,
   LifeBuoy,
+  Settings,
+  ShieldCheck,
   Square,
 } from 'lucide-react';
-import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
 interface SidebarProps {

@@ -1,10 +1,11 @@
-import { ChevronRight, Info, CheckCircle2, Send } from 'lucide-react';
+import { CheckCircle2, ChevronRight, Info, Send } from 'lucide-react';
 import { Button } from 'primereact/button';
 import { Calendar } from 'primereact/calendar';
 import { Dropdown } from 'primereact/dropdown';
 import { InputTextarea } from 'primereact/inputtextarea';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+
 import { addRequest } from '../store';
 import { ApprovalRequest, RequestType } from '../types';
 import AvatarInitials from './AvatarInitials';
